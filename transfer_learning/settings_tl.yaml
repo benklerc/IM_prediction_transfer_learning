@@ -1,0 +1,4 @@
+size_train_set: 0.2
+random_state : 42
+drop_empty_modified_sequence: False
+evaluation_property: 'mobility'
