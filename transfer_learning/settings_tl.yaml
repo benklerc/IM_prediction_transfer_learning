@@ -1,4 +1,6 @@
 size_train_set: 0.2
+size_eval_set: 0.2
 random_state : 42
+output_directory: 'output_transfer_learning'
 drop_empty_modified_sequence: False
 evaluation_property: 'mobility'
