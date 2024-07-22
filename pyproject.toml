@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "IM_prediction_transfer_learning_benklerc"
+version = "0.0.1"
+authors = [
+  { name="Cora Benkler", email="c.benkler@tum.de" },
+]
+description = "Pipeline to do Transfer Learning on AlphaPeptDeep CCS model"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+
+[project.urls]
+Homepage = "https://github.com/benklerc/IM_prediction_transfer_learning"
+Issues = "https://github.com/benklerc/IM_prediction_transfer_learning/issues"

@@ -137,7 +137,7 @@ class Transfer_Learning():
         '''
         # create right output directory(in case of repeated use of pipline function)
         if self._num_pipeline > 0:
-            self._output_dir = f'{self._settings['output_directory']}_{self._num_pipeline}'
+            self._output_dir = f"{self._settings['output_directory']}_{self._num_pipeline}"
         self._num_pipeline +=1
         # reset counters for evaluation and statistics(in case of repeated use of pipline function)
         self._num_evaluation = 0
