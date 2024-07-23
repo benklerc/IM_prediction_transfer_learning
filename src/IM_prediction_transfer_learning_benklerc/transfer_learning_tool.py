@@ -2,8 +2,9 @@ import os
 import yaml
 import pandas as pd
 import numpy as np
+from alphabase.psm_reader import psm_reader_provider
 from peptdeep.pretrained_models import ModelManager
-from alphabase.io.psm_reader import psm_reader_provider
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -70,7 +71,10 @@ class Transfer_Learning():
 
         
         # load setting from yaml
-        self._settings = load_yaml('settings_tl.yaml')
+        try:
+            self._settings = load_yaml('settings_tl.yaml')
+        except:
+            self._settings = {}
         # set default values for attributes from the yaml file
         self._size_train_set = 0.2
         self._size_eval_set = 0.2

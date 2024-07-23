@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "IM_prediction_transfer_learning_benklerc"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Cora Benkler", email="c.benkler@tum.de" },
 ]
