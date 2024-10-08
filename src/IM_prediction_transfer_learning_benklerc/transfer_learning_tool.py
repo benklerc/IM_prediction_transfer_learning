@@ -284,6 +284,49 @@ class Transfer_Learning():
         self.eval_set = df_not_train.sample(n=self._size_eval_set, random_state=self.__random_state)
 
 
+    def sample_data_advanced(self, dataframe: pd.DataFrame):
+        '''
+        Splits Data for Training and Evaluation Set.
+        ----------------
+        Parameters
+        ----------------
+        dataframe: pd.DataFrame
+            Dataframe from which Training set and Evaluation set is taken
+        '''
+        # get absolute values for the set sizes
+        if type(self._size_eval_set) is float:
+            self._size_eval_set = round(self._size_eval_set*len(self.training_alpha_base))
+        if type(self._size_train_set) is float:
+            self._size_train_set = round(self._size_train_set*len(self.training_alpha_base))
+
+         # if only one df provided, train und eval set are not allowed to be the full dataset
+        if (self.prediction_max_quant is None) &( (self._size_eval_set + self._size_train_set) >= len(self.training_max_quant)):
+            raise Exception('Your training and evaluation sets are too big')
+        
+        # sample training set
+        # TODO: Improve sampling
+        # imprved sampling
+        # ensure same quantity of experiments
+        df_51 = df[df["Experiment"]=='P064051']
+        df_64 = df[df["Experiment"]=='P064064']
+        df_28 = df[df["Experiment"]=='P064428']
+        # calculate the numbers for each experiment
+        n_51 = round((len(df_51)/len(df))*n)
+        n_64 = round((len(df_64)/len(df))*n)
+        n_28 = round((len(df_28)/len(df))*n)
+
+        df_51 = df_51.sample(n = n_51, random_state =  42)
+        df_64 = df_64.sample(n = n_64, random_state = 42)
+        df_28 = df_28.sample(n=n_28, random_state = 42)
+
+        df_train = pd.concat(objs=[df_51, df_64, df_28])
+        print(len(df_train))
+
+        # make sure no overlap between the sets
+        df_not_train = dataframe.drop(self.train_set.index)
+        # sample evaluation set
+        self.eval_set = df_not_train.sample(n=self._size_eval_set, random_state=self.__random_state)
+
     def data_statistics(self, dataframe: pd.DataFrame, addiotional_statistics: (str | list )= None):
         '''
         Saves basic statistics in folder ../data_statistics
